@@ -1,0 +1,122 @@
+@import 'palette';
+
+$_dia-theme-generate-default-density: true !default;
+
+@function dia-contrast($palette, $hue) {
+	@return map-get(map-get($palette, contrast), $hue);
+}
+
+@function dia-palette($base-palette, $default: 500, $lighter: 100, $darker: 700, $text: $default) {
+	$result: map_merge($base-palette, (default: map-get($base-palette, $default),
+				lighter: map-get($base-palette, $lighter),
+				darker: map-get($base-palette, $darker),
+				text: map-get($base-palette, $text),
+
+				default-contrast: dia-contrast($base-palette, $default),
+				lighter-contrast: dia-contrast($base-palette, $lighter),
+				darker-contrast: dia-contrast($base-palette, $darker)));
+
+	@each $hue,
+	$color in $base-palette {
+		$result: map_merge($result, ('#{$hue}-contrast': dia-contrast($base-palette, $hue)));
+	}
+
+	@return $result;
+}
+
+@function dia-color($palette, $hue: default, $opacity: null) {
+	@if type-of($hue)==number and $hue>=0 and $hue <=1 {
+		@return dia-color($palette, default, $hue);
+	}
+
+	$color: map-get($palette, $hue);
+
+	@if (type-of($color) !=color) {
+		@return $color;
+	}
+
+	@return rgba($color, if($opacity==null, opacity($color), $opacity));
+}
+
+@function _dia-validate-theme($theme) {
+	@if map_get($theme, color) {
+		$color: map_get($theme, color);
+
+		@if not map_get($color, primary) {
+			@error 'Theme does not define a valid "primary" palette.';
+		}
+
+		@else if not map_get($color, accent) {
+			@error 'Theme does not define a valid "accent" palette.';
+		}
+
+		@else if not map_get($color, warn) {
+			@error 'Theme does not define a valid "warn" palette.';
+		}
+	}
+
+	@return $theme;
+}
+
+@function _dia-create-color-config($is-dark, $primary, $accent, $warn: null) {
+	@return (primary: $primary,
+		accent: $accent,
+		warn: if($warn !=null, $warn, dia-palette($dia-red)),
+		is-dark: $is-dark,
+		foreground: if($is-dark==true, $dia-dark-theme-foreground, $dia-light-theme-foreground),
+		background: if($is-dark==true, $dia-dark-theme-background, $dia-light-theme-background));
+}
+
+@function dia-theme($config, $is-dark: false) {
+	$result: $config;
+
+	@if map_get($config, color) {
+		$color-settings: map_get($config, color);
+		$primary: map_get($color-settings, primary);
+		$accent: map_get($color-settings, accent);
+		$warn: map_get($color-settings, warn);
+		$result: map_merge($result, (color: _dia-create-color-config($is-dark, $primary, $accent, $warn)));
+	}
+
+	@return _dia-validate-theme($result);
+}
+
+@function dia-get-color-config($theme, $default: null) {
+	@if not _dia-is-theme-object($theme) {
+		@return $theme;
+	}
+
+	@if map_has_key($theme, color) {
+		@return map_get($theme, color);
+	}
+
+	@return $default;
+}
+
+@function dia-get-density-config($theme-or-config, $default: 0) {
+	@if not _dia-is-theme-object($theme-or-config) {
+		@return $theme-or-config;
+	}
+
+	@if map_has_key($theme-or-config, density) {
+		@return map_get($theme-or-config, density);
+	}
+
+	@return $default;
+}
+
+@function dia-get-typography-config($theme-or-config, $default: null) {
+	@if not _dia-is-theme-object($theme-or-config) {
+		@return $theme-or-config;
+	}
+
+	@if (map_has_key($theme-or-config, typography)) {
+		@return map_get($theme-or-config, typography);
+	}
+
+	@return $default;
+}
+
+@function _dia-is-theme-object($object) {
+	@return type-of($object)=='map'and (map_has_key($object, color) or map_has_key($object, density) or map_has_key($object, typography) or length($object)==0);
+}
