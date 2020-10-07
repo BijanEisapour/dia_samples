@@ -1,0 +1,7 @@
+@mixin _noop-animation() {
+	@at-root ._dia-animation-noopable#{&} {
+		transition: none;
+		animation: none;
+		@content;
+	}
+}

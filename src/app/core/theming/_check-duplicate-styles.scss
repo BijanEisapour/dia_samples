@@ -1,0 +1,58 @@
+@import './theming';
+
+$dia-theme-ignore-duplication-warnings: false !default;
+
+$_dia-theme-emitted-color: () !default;
+$_dia-theme-emitted-typography: () !default;
+$_dia-theme-emitted-density: () !default;
+
+@mixin _dia-check-duplicate-theme-styles($theme, $id) {
+	$color-config: dia-get-color-config($theme);
+	$density-config: dia-get-density-config($theme);
+	$typography-config: dia-get-typography-config($theme);
+
+	// Lists of previous `color`, `density` and `typography` configurations.
+	$previous-color: map_get($_dia-theme-emitted-color, $id) or ();
+	$previous-typography: map_get($_dia-theme-emitted-typography, $id) or ();
+	$previous-density: map_get($_dia-theme-emitted-density, $id) or ();
+
+	// Check if the color configuration has been generated before.
+	@if $color-config !=null {
+		@if index($previous-color, $color-config) !=null and not $dia-theme-ignore-duplication-warnings {
+			@warn 'The same color styles are generated multiple times.';
+		}
+
+		$previous-color: append($previous-color, $color-config);
+	}
+
+	// Check if the typography configuration has been generated before.
+	@if $typography-config !=null {
+		@if index($previous-typography, $typography-config) !=null and not $dia-theme-ignore-duplication-warnings {
+			@warn 'The same typography styles are generated multiple times.';
+		}
+
+		$previous-typography: append($previous-typography, $typography-config);
+	}
+
+	// Check if the density configuration has been generated before.
+	@if $density-config !=null {
+		@if index($previous-density, $density-config) !=null {
+			@warn 'The same density styles are generated multiple times.';
+		}
+
+		$previous-density: append($previous-density, $density-config);
+	}
+
+	$_dia-theme-emitted-color: map_merge($_dia-theme-emitted-color, ($id: $previous-color)) !global;
+	$_dia-theme-emitted-density: map_merge($_dia-theme-emitted-density, ($id: $previous-density)) !global;
+	$_dia-theme-emitted-typography: map_merge($_dia-theme-emitted-typography, ($id: $previous-typography)) !global;
+
+	// Optionally, consumers of this mixin can wrap contents inside so that nested
+	// duplicate style checks do not report another warning. e.g. if developers include
+	// the `angular-material-theme` mixin twice, only the top-level duplicate styles check
+	// should report a warning. Not all individual components should report a warning too.
+	$orig-dia-theme-ignore-duplication-warnings: $dia-theme-ignore-duplication-warnings;
+	$dia-theme-ignore-duplication-warnings: true !global;
+	@content;
+	$dia-theme-ignore-duplication-warnings: $orig-dia-theme-ignore-duplication-warnings !global;
+}

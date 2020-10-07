@@ -1,1 +1,36 @@
-/* You can add global styles to this file, and also import other style files */
+$color_light : #FAFAFA;
+$color_dark : #1F1F1F;
+
+$color_primary_idle : #1A91DA;
+$color_primary_hovered : #177FBF;
+$color_primary_selected : #1DA1F2;
+
+$color_accent_idle : #F26198;
+$color_accent_hovered : #CC5280;
+$color_accent_selected : #F279A7;
+
+$color_warning_idle : #FFA000;
+$color_warning_hovered : #E69000;
+$color_warning_selected : #FFAA1A;
+
+$color_success_idle : #2E9933;
+$color_success_hovered : #26802A;
+$color_success_selected : #36B33B;
+
+$color_danger_idle : #F23042;
+$color_danger_hovered : #D92B3B;
+$color_danger_selected : #FF4051;
+
+.primary {
+	background-color: $color_primary_idle;
+}
+
+html,
+body {
+	height: 100%;
+}
+
+body {
+	margin: 0;
+	font-family: Roboto, "Helvetica Neue", sans-serif;
+}

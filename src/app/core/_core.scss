@@ -1,0 +1,52 @@
+@import '../../../node_modules/@angular/cdk/overlay/overlay';
+@import '../../../node_modules/@angular/cdk/a11y/a11y';
+@import '../../../node_modules/@angular/cdk/text-field/text-field';
+
+// Core styles that can be used to apply material design treatments to any element.
+@import './style/elevation';
+@import './focus-indicators/focus-indicators';
+@import './typography/all-typography';
+
+// Mixin that renders all of the core styles that are not theme-dependent.
+@mixin dia-core($typography-config: null) {
+	@include angular-dia-typography($typography-config);
+	@include cdk-a11y();
+	@include cdk-overlay();
+	@include cdk-text-field();
+
+	@include _dia-strong-focus-indicators-positioning();
+}
+
+@mixin dia-core-color($config-or-theme) {
+	$config: dia-get-color-config($config-or-theme);
+
+	.dia-app-background#{if(&, ', &.dia-app-background', '')} {
+		$background: map-get($config, background);
+		$foreground: map-get($config, foreground);
+
+		background-color: dia-color($background, background);
+		color: dia-color($foreground, text);
+	}
+
+	@for $zValue from 0 through 24 {
+		.#{$_dia-elevation-prefix}#{$zValue} {
+			@include _dia-theme-elevation($zValue, $config);
+		}
+	}
+
+	@at-root {
+		.dia-theme-loaded-marker {
+			display: none;
+		}
+	}
+}
+
+@mixin dia-core-theme($theme) {
+	@include _dia-check-duplicate-theme-styles($theme, 'dia-core') {
+		$color: dia-get-color-config($theme);
+
+		@if $color !=null {
+			@include dia-core-color($color);
+		}
+	}
+}

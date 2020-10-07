@@ -1,0 +1,152 @@
+@import 'button-base';
+@import '../core/style/layout-common';
+@import '../../../node_modules/@angular/cdk/a11y/a11y';
+
+.dia-button,
+.dia-icon-button {
+	.dia-button-focus-overlay {
+		opacity: 0;
+	}
+}
+
+// Use the same visual treatment for hover as for focus.
+.dia-button,
+.dia-stroked-button {
+	&:hover:not(.dia-button-disabled) .dia-button-focus-overlay {
+		opacity: 0.04;
+	}
+}
+
+// Disable the hover styles on non-hover devices.
+@media (hover: none) {
+
+	.dia-button,
+	.dia-stroked-button {
+		&:hover:not(.dia-button-disabled) .dia-button-focus-overlay {
+			opacity: 0;
+		}
+	}
+}
+
+.dia-button,
+.dia-icon-button,
+.dia-stroked-button,
+.dia-flat-button {
+	@include dia-button-base;
+}
+
+.dia-raised-button {
+	@include dia-raised-button;
+}
+
+.dia-stroked-button {
+	border: $dia-stroked-button-border-width solid currentColor;
+	padding: $dia-stroked-button-padding;
+	line-height: $dia-stroked-button-line-height;
+
+	.dia-button-ripple.dia-ripple,
+	.dia-button-focus-overlay {
+		top: -$dia-stroked-button-border-width;
+		left: -$dia-stroked-button-border-width;
+		right: -$dia-stroked-button-border-width;
+		bottom: -$dia-stroked-button-border-width;
+	}
+}
+
+.dia-fab {
+	@include dia-fab($dia-fab-size, $dia-fab-padding);
+}
+
+.dia-mini-fab {
+	@include dia-fab($dia-mini-fab-size, $dia-mini-fab-padding);
+}
+
+.dia-icon-button {
+	padding: 0;
+
+	min-width: 0;
+
+	width: $dia-icon-button-size;
+	height: $dia-icon-button-size;
+
+	flex-shrink: 0;
+	line-height: $dia-icon-button-size;
+	border-radius: $dia-icon-button-border-radius;
+
+	i,
+	.dia-icon {
+		line-height: $dia-icon-button-line-height;
+	}
+}
+
+.dia-button-ripple.dia-ripple,
+.dia-button-focus-overlay {
+	@include dia-fill;
+
+	pointer-events: none;
+
+	border-radius: inherit;
+}
+
+.dia-button-ripple.dia-ripple:not(:empty) {
+	transform: translateZ(0);
+}
+
+.dia-button-focus-overlay {
+	opacity: 0;
+	transition: $dia-button-focus-transition;
+
+	._dia-animation-noopable & {
+		transition: none;
+	}
+
+	@include cdk-high-contrast(active, off) {
+		background-color: #fff;
+	}
+
+	@include cdk-high-contrast(black-on-white, off) {
+		background-color: #000;
+	}
+}
+
+.dia-button-ripple-round {
+	border-radius: 50%;
+	z-index: 1;
+}
+
+.dia-button,
+.dia-flat-button,
+.dia-stroked-button,
+.dia-raised-button,
+.dia-icon-button,
+.dia-fab,
+.dia-mini-fab {
+	.dia-button-wrapper>* {
+		vertical-align: middle;
+	}
+}
+
+.dia-form-field:not(.dia-form-field-appearance-legacy) {
+
+	.dia-form-field-prefix,
+	.dia-form-field-suffix {
+		.dia-icon-button {
+			display: block;
+			font-size: inherit;
+			width: 2.5em;
+			height: 2.5em;
+		}
+	}
+}
+
+@include cdk-high-contrast(active, off) {
+
+	.dia-button,
+	.dia-flat-button,
+	.dia-raised-button,
+	.dia-icon-button,
+	.dia-fab,
+	.dia-mini-fab {
+		outline: solid 1px;
+	}
+}

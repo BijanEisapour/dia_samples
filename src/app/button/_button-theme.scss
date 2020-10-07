@@ -1,0 +1,202 @@
+@import '../core/theming/theming';
+@import '../core/style/elevation';
+@import '../core/typography/typography-utils';
+@import '../core/theming/check-duplicate-styles';
+
+$_dia-button-ripple-opacity: 0.1;
+
+@mixin _dia-button-focus-overlay-color($config-or-theme) {
+	$config: dia-get-color-config($config-or-theme);
+	$primary: map-get($config, primary);
+	$accent: map-get($config, accent);
+	$warn: map-get($config, warn);
+
+	&.dia-primary .dia-button-focus-overlay {
+		background-color: dia-color($primary);
+	}
+
+	&.dia-accent .dia-button-focus-overlay {
+		background-color: dia-color($accent);
+	}
+
+	&.dia-warn .dia-button-focus-overlay {
+		background-color: dia-color($warn);
+	}
+
+	&.dia-button-disabled .dia-button-focus-overlay {
+		background-color: transparent;
+	}
+}
+
+@mixin _dia-button-ripple-background($palette, $hue, $opacity) {
+	$background-color: dia-color($palette, $hue, $opacity);
+	background-color: $background-color;
+
+	@if (type-of($background-color) !=color) {
+		opacity: $opacity;
+	}
+}
+
+@mixin _dia-button-ripple-color($theme, $hue, $opacity: $_dia-button-ripple-opacity) {
+	$primary: map-get($theme, primary);
+	$accent: map-get($theme, accent);
+	$warn: map-get($theme, warn);
+
+	&.dia-primary .dia-ripple-element {
+		@include _dia-button-ripple-background($primary, $hue, $opacity);
+	}
+
+	&.dia-accent .dia-ripple-element {
+		@include _dia-button-ripple-background($accent, $hue, $opacity);
+	}
+
+	&.dia-warn .dia-ripple-element {
+		@include _dia-button-ripple-background($warn, $hue, $opacity);
+	}
+}
+
+@mixin _dia-button-theme-property($theme, $property, $hue) {
+	$primary: map-get($theme, primary);
+	$accent: map-get($theme, accent);
+	$warn: map-get($theme, warn);
+	$background: map-get($theme, background);
+	$foreground: map-get($theme, foreground);
+
+	&.dia-primary {
+		#{$property}: dia-color($primary, $hue);
+	}
+
+	&.dia-accent {
+		#{$property}: dia-color($accent, $hue);
+	}
+
+	&.dia-warn {
+		#{$property}: dia-color($warn, $hue);
+	}
+
+	&.dia-primary,
+	&.dia-accent,
+	&.dia-warn,
+	&.dia-button-disabled {
+		&.dia-button-disabled {
+			$palette: if($property=='color', $foreground, $background);
+			#{$property}: dia-color($palette, disabled-button);
+		}
+	}
+}
+
+@mixin dia-button-color($config-or-theme) {
+	$config: dia-get-color-config($config-or-theme);
+	$primary: map-get($config, primary);
+	$accent: map-get($config, accent);
+	$warn: map-get($config, warn);
+	$background: map-get($config, background);
+	$foreground: map-get($config, foreground);
+
+	.dia-button,
+	.dia-icon-button,
+	.dia-stroked-button {
+		color: inherit;
+		background: transparent;
+
+		@include _dia-button-theme-property($config, 'color', text);
+		@include _dia-button-focus-overlay-color($config);
+
+		.dia-ripple-element {
+			opacity: $_dia-button-ripple-opacity;
+			background-color: currentColor;
+		}
+	}
+
+	.dia-button-focus-overlay {
+		background: map_get($foreground, base);
+	}
+
+	.dia-stroked-button:not(.dia-button-disabled) {
+		border-color: dia-color($foreground, divider);
+	}
+
+	.dia-flat-button,
+	.dia-raised-button,
+	.dia-fab,
+	.dia-mini-fab {
+		color: dia-color($foreground, text);
+		background-color: dia-color($background, raised-button);
+
+		@include _dia-button-theme-property($config, 'color', default-contrast);
+		@include _dia-button-theme-property($config, 'background-color', default);
+		@include _dia-button-ripple-color($config, default-contrast);
+	}
+
+	.dia-stroked-button,
+	.dia-flat-button {
+		@include _dia-theme-overridable-elevation(0, $config);
+	}
+
+	.dia-raised-button {
+		@include _dia-theme-overridable-elevation(2, $config);
+
+		&:not(.dia-button-disabled):active {
+			@include _dia-theme-overridable-elevation(8, $config);
+		}
+
+		&.dia-button-disabled {
+			@include _dia-theme-overridable-elevation(0, $config);
+		}
+	}
+
+	.dia-fab,
+	.dia-mini-fab {
+		@include _dia-theme-overridable-elevation(6, $config);
+
+		&:not(.dia-button-disabled):active {
+			@include _dia-theme-overridable-elevation(12, $config);
+		}
+
+		&.dia-button-disabled {
+			@include _dia-theme-overridable-elevation(0, $config);
+		}
+	}
+}
+
+@mixin dia-button-typography($config-or-theme) {
+	$config: dia-get-typography-config($config-or-theme);
+
+	.dia-button,
+	.dia-raised-button,
+	.dia-icon-button,
+	.dia-stroked-button,
+	.dia-flat-button,
+	.dia-fab,
+	.dia-mini-fab {
+		font: {
+			family: dia-font-family($config, button);
+			size: dia-font-size($config, button);
+			weight: dia-font-weight($config, button);
+		}
+	}
+}
+
+@mixin _dia-button-density($config-or-theme) {}
+
+@mixin dia-button-theme($theme-or-color-config) {
+	$theme: $theme-or-color-config;
+
+	@include _dia-check-duplicate-theme-styles($theme, 'dia-button') {
+		$color: dia-get-color-config($theme);
+		$density: dia-get-density-config($theme);
+		$typography: dia-get-typography-config($theme);
+
+		@if $color !=null {
+			@include dia-button-color($color);
+		}
+
+		@if $density !=null {
+			@include _dia-button-density($density);
+		}
+
+		@if $typography !=null {
+			@include dia-button-typography($typography);
+		}
+	}
+}

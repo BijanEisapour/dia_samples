@@ -1,0 +1,98 @@
+@import '../core/style/variables';
+@import '../core/style/elevation';
+@import '../core/style/button-common';
+@import '../core/style/noop-animation';
+
+$dia-button-padding: 0 16px !default;
+$dia-button-min-width: 64px !default;
+$dia-button-margin: 0 !default;
+$dia-button-line-height: 36px !default;
+$dia-button-border-radius: 4px !default;
+$dia-button-focus-transition: opacity 200ms $swift-ease-in-out-timing-function,
+background-color 200ms $swift-ease-in-out-timing-function !default;
+
+$dia-stroked-button-line-height: $dia-button-line-height - 2;
+$dia-stroked-button-padding: 0 15px;
+$dia-stroked-button-border-width: 1px;
+
+$dia-icon-button-size: 40px !default;
+$dia-icon-button-border-radius: 50% !default;
+$dia-icon-button-line-height: 24px !default;
+
+$dia-fab-border-radius: 50% !default;
+$dia-fab-size: 56px !default;
+$dia-fab-padding: 16px !default;
+
+$dia-mini-fab-size: 40px !default;
+$dia-mini-fab-padding: 8px !default;
+
+@mixin dia-button-base {
+	box-sizing: border-box;
+	position: relative;
+
+	@include dia-button-reset();
+
+	// Make anchors render like buttons.
+	display: inline-block;
+	white-space: nowrap;
+	text-decoration: none;
+	vertical-align: baseline;
+	text-align: center;
+
+	// Sizing.
+	margin: $dia-button-margin;
+	min-width: $dia-button-min-width;
+	line-height: $dia-button-line-height;
+	padding: $dia-button-padding;
+	border-radius: $dia-button-border-radius;
+
+	overflow: visible;
+
+	&.dia-button-disabled {
+		cursor: default;
+	}
+
+	&.cdk-keyboard-focused,
+	&.cdk-program-focused {
+		.dia-button-focus-overlay {
+			opacity: 0.12;
+		}
+	}
+
+	&::-moz-focus-inner {
+		border: 0;
+	}
+}
+
+// Applies styles to buttons with backgrounds: raised, fab, and mini-fab
+@mixin dia-raised-button {
+	@include dia-button-base;
+	@include _noop-animation();
+
+	// Force hardware acceleration.
+	transform: translate3d(0, 0, 0);
+
+	// Animation.
+	transition: background $swift-ease-out-duration $swift-ease-out-timing-function,
+		dia-elevation-transition-property-value();
+}
+
+// Applies styles to fab and mini-fab button types only
+@mixin dia-fab($size, $padding) {
+	@include dia-raised-button;
+
+	min-width: 0;
+
+	border-radius: $dia-fab-border-radius;
+	width: $size;
+	height: $size;
+	padding: 0;
+
+	flex-shrink: 0;
+
+	.dia-button-wrapper {
+		padding: $padding 0;
+		display: inline-block;
+		line-height: $dia-icon-button-line-height;
+	}
+}
