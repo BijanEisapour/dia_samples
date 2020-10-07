@@ -1,0 +1,150 @@
+@import 'typography-utils';
+
+@function dia-typography-level($font-size,
+	$line-height: $font-size,
+	$font-weight: 400,
+	$font-family: null,
+	$letter-spacing: normal) {
+
+	@return (font-size: $font-size,
+		line-height: $line-height,
+		font-weight: $font-weight,
+		font-family: $font-family,
+		letter-spacing: $letter-spacing);
+}
+
+@function dia-typography-config($font-family: 'Roboto, "Helvetica Neue", sans-serif',
+	$display-4: dia-typography-level(112px, 112px, 300, $letter-spacing: -0.05em),
+	$display-3: dia-typography-level(56px, 56px, 400, $letter-spacing: -0.02em),
+	$display-2: dia-typography-level(45px, 48px, 400, $letter-spacing: -0.005em),
+	$display-1: dia-typography-level(34px, 40px, 400),
+	$headline: dia-typography-level(24px, 32px, 400),
+	$title: dia-typography-level(20px, 32px, 500),
+	$subheading-2: dia-typography-level(16px, 28px, 400),
+	$subheading-1: dia-typography-level(15px, 24px, 400),
+	$body-2: dia-typography-level(14px, 24px, 500),
+	$body-1: dia-typography-level(14px, 20px, 400),
+	$caption: dia-typography-level(12px, 20px, 400),
+	$button: dia-typography-level(14px, 14px, 500),
+	$input: dia-typography-level(inherit, 1.125, 400)) {
+
+	$config: (display-4: $display-4,
+			display-3: $display-3,
+			display-2: $display-2,
+			display-1: $display-1,
+			headline: $headline,
+			title: $title,
+			subheading-2: $subheading-2,
+			subheading-1: $subheading-1,
+			body-2: $body-2,
+			body-1: $body-1,
+			caption: $caption,
+			button: $button,
+			input: $input,
+		);
+
+	@each $key,
+	$level in $config {
+		@if map-get($level, font-family)==null {
+			$new-level: map-merge($level, (font-family: $font-family));
+			$config: map-merge($config, ($key: $new-level));
+		}
+	}
+
+	@return map-merge($config, (font-family: $font-family));
+}
+
+@mixin dia-base-typography($config, $selector: '.dia-typography') {
+
+	.dia-h1,
+	.dia-headline,
+	#{$selector} h1 {
+		@include dia-typography-level-to-styles($config, headline);
+		margin: 0 0 16px;
+	}
+
+	.dia-h2,
+	.dia-title,
+	#{$selector} h2 {
+		@include dia-typography-level-to-styles($config, title);
+		margin: 0 0 16px;
+	}
+
+	.dia-h3,
+	.dia-subheading-2,
+	#{$selector} h3 {
+		@include dia-typography-level-to-styles($config, subheading-2);
+		margin: 0 0 16px;
+	}
+
+	.dia-h4,
+	.dia-subheading-1,
+	#{$selector} h4 {
+		@include dia-typography-level-to-styles($config, subheading-1);
+		margin: 0 0 16px;
+	}
+
+	.dia-h5,
+	#{$selector} h5 {
+		@include dia-typography-font-shorthand(calc(#{dia-font-size($config, body-1)} * 0.83),
+			dia-font-weight($config, body-1),
+			dia-line-height($config, body-1),
+			dia-font-family($config, body-1));
+
+		margin: 0 0 12px;
+	}
+
+	.dia-h6,
+	#{$selector} h6 {
+		@include dia-typography-font-shorthand(calc(#{dia-font-size($config, body-1)} * 0.67),
+			dia-font-weight($config, body-1),
+			dia-line-height($config, body-1),
+			dia-font-family($config, body-1));
+
+		margin: 0 0 12px;
+	}
+
+	.dia-body-strong,
+	.dia-body-2 {
+		@include dia-typography-level-to-styles($config, body-2);
+	}
+
+	.dia-body,
+	.dia-body-1,
+	#{$selector} {
+		@include dia-typography-level-to-styles($config, body-1);
+
+		p {
+			margin: 0 0 12px;
+		}
+	}
+
+	.dia-small,
+	.dia-caption {
+		@include dia-typography-level-to-styles($config, caption);
+	}
+
+	.dia-display-4,
+	#{$selector} .dia-display-4 {
+		@include dia-typography-level-to-styles($config, display-4);
+		margin: 0 0 56px;
+	}
+
+	.dia-display-3,
+	#{$selector} .dia-display-3 {
+		@include dia-typography-level-to-styles($config, display-3);
+		margin: 0 0 64px;
+	}
+
+	.dia-display-2,
+	#{$selector} .dia-display-2 {
+		@include dia-typography-level-to-styles($config, display-2);
+		margin: 0 0 64px;
+	}
+
+	.dia-display-1,
+	#{$selector} .dia-display-1 {
+		@include dia-typography-level-to-styles($config, display-1);
+		margin: 0 0 64px;
+	}
+}

@@ -1,6 +1,6 @@
-@import '../../cdk/overlay/overlay';
-@import '../../cdk/a11y/a11y';
-@import '../../cdk/text-field/text-field';
+@import '../../../node_modules/@angular/cdk/overlay/overlay';
+@import '../../../node_modules/@angular/cdk/a11y/a11y';
+@import '../../../node_modules/@angular/cdk/text-field/text-field';
 
 // Core styles that can be used to apply material design treatments to any element.
 @import './style/elevation';
@@ -8,69 +8,45 @@
 @import './typography/all-typography';
 
 // Mixin that renders all of the core styles that are not theme-dependent.
-@mixin mat-core($typography-config: null) {
-	@include angular-material-typography($typography-config);
-	@include mat-ripple();
+@mixin dia-core($typography-config: null) {
+	@include angular-dia-typography($typography-config);
 	@include cdk-a11y();
 	@include cdk-overlay();
 	@include cdk-text-field();
 
-	@include _mat-strong-focus-indicators-positioning();
-	@include _mat-mdc-core();
+	@include _dia-strong-focus-indicators-positioning();
 }
 
-@mixin mat-core-color($config-or-theme) {
-	$config: mat-get-color-config($config-or-theme);
+@mixin dia-core-color($config-or-theme) {
+	$config: dia-get-color-config($config-or-theme);
 
-	// Wrapper element that provides the theme background when the user's content isn't
-	// inside of a `mat-sidenav-container`. Note that we need to exclude the ampersand
-	// selector in case the mixin is included at the top level.
-	.mat-app-background#{if(&, ', &.mat-app-background', '')} {
+	.dia-app-background#{if(&, ', &.dia-app-background', '')} {
 		$background: map-get($config, background);
 		$foreground: map-get($config, foreground);
 
-		background-color: mat-color($background, background);
-		color: mat-color($foreground, text);
+		background-color: dia-color($background, background);
+		color: dia-color($foreground, text);
 	}
 
-	// Provides external CSS classes for each elevation value. Each CSS class is formatted as
-	// `mat-elevation-z$zValue` where `$zValue` corresponds to the z-space to which the element is
-	// elevated.
 	@for $zValue from 0 through 24 {
-		.#{$_mat-elevation-prefix}#{$zValue} {
-			@include _mat-theme-elevation($zValue, $config);
+		.#{$_dia-elevation-prefix}#{$zValue} {
+			@include _dia-theme-elevation($zValue, $config);
 		}
 	}
 
-	// Marker that is used to determine whether the user has added a theme to their page.
 	@at-root {
-		.mat-theme-loaded-marker {
+		.dia-theme-loaded-marker {
 			display: none;
 		}
 	}
 }
 
-// Mixin that renders all of the core styles that depend on the theme.
-@mixin mat-core-theme($theme) {
-	@include _mat-check-duplicate-theme-styles($theme, 'mat-core') {
-		$color: mat-get-color-config($theme);
+@mixin dia-core-theme($theme) {
+	@include _dia-check-duplicate-theme-styles($theme, 'dia-core') {
+		$color: dia-get-color-config($theme);
 
 		@if $color !=null {
-			@include mat-core-color($color);
+			@include dia-core-color($color);
 		}
-	}
-}
-
-// Mixin that renders all of the core MDC styles. Private mixin included with `mat-core`.
-@mixin _mat-mdc-core() {
-	@include _mat-mdc-strong-focus-indicators-positioning();
-}
-
-// Mixin that ensures focus indicator host elements are positioned so that the focus indicator
-// pseudo element within is positioned relative to the host. Private mixin included within
-// `_mat-mdc-core`.
-@mixin _mat-mdc-strong-focus-indicators-positioning() {
-	.mat-mdc-focus-indicator {
-		position: relative;
 	}
 }

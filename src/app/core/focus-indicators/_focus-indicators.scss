@@ -1,0 +1,89 @@
+@import '../theming/theming';
+@import '../theming/check-duplicate-styles';
+@import '../style/layout-common';
+
+@mixin dia-strong-focus-indicators($config: ()) {
+	// Default focus indicator config.
+	$default-config: (border-style: solid,
+			border-width: 3px,
+			border-radius: 4px,
+		);
+
+	// Merge default config with user config.
+	$config: map-merge($default-config, $config);
+	$border-style: map-get($config, border-style);
+	$border-width: map-get($config, border-width);
+	$border-radius: map-get($config, border-radius);
+
+	// Base styles for focus indicators.
+	.dia-focus-indicator::before {
+		@include dia-fill();
+		box-sizing: border-box;
+		pointer-events: none;
+		border: $border-width $border-style transparent;
+		border-radius: $border-radius;
+	}
+
+	.dia-focus-indicator.dia-flat-button::before,
+	.dia-focus-indicator.dia-raised-button::before,
+	.dia-focus-indicator.dia-fab::before,
+	.dia-focus-indicator.dia-mini-fab::before,
+	.dia-focus-indicator.dia-chip::before,
+	.dia-focus-indicator.dia-sort-header-container::before {
+		margin: -($border-width + 2px);
+	}
+
+	.dia-focus-indicator.dia-stroked-button::before,
+	.dia-focus-indicator.dia-calendar-body-cell-content::before {
+		margin: -($border-width + 3px);
+	}
+
+	.dia-focus-indicator.dia-tab-link::before,
+	.dia-focus-indicator.dia-tab-label::before {
+		margin: 5px;
+	}
+
+	.dia-checkbox-input:focus~.dia-focus-indicator::before,
+	.dia-radio-input:focus~.dia-focus-indicator::before,
+	.dia-slide-toggle-input:focus~.dia-slide-toggle-thumb-container .dia-focus-indicator::before,
+	.dia-focus-indicator.dia-option.dia-active::before,
+	.dia-calendar-body-cell:focus .dia-focus-indicator::before,
+	.dia-focus-indicator:focus::before {
+		content: '';
+	}
+}
+
+@mixin _dia-strong-focus-indicators-border-color($color) {
+	.dia-focus-indicator::before {
+		border-color: $color;
+	}
+}
+
+@mixin dia-strong-focus-indicators-color($config-or-theme) {
+	$config: dia-get-color-config($config-or-theme);
+	@include _dia-strong-focus-indicators-border-color(dia-color(map_get($config, primary)));
+}
+
+@mixin dia-strong-focus-indicators-theme($theme-or-color) {
+	@if type-of($theme-or-color) !='map' {
+		@include _dia-strong-focus-indicators-border-color($theme-or-color);
+	}
+
+	@else {
+		$theme: $theme-or-color;
+
+		@include _dia-check-duplicate-theme-styles($theme, 'dia-strong-focus-indicators') {
+			$color: dia-get-color-config($theme);
+
+			@if $color !=null {
+				@include dia-strong-focus-indicators-color($color);
+			}
+		}
+	}
+}
+
+@mixin _dia-strong-focus-indicators-positioning() {
+	.dia-focus-indicator {
+		position: relative;
+	}
+}

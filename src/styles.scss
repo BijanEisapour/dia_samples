@@ -24,3 +24,13 @@ $color_danger_selected : #FF4051;
 .primary {
 	background-color: $color_primary_idle;
 }
+
+html,
+body {
+	height: 100%;
+}
+
+body {
+	margin: 0;
+	font-family: Roboto, "Helvetica Neue", sans-serif;
+}

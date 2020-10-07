@@ -1,0 +1,12 @@
+@import '../all-theme';
+
+@include dia-core();
+
+$primary: dia-palette($dia-blue);
+$accent: dia-palette($dia-teal, A200, A100, A400);
+$warn: dia-palette($dia-orange);
+
+$theme: dia-theme((color: (primary: $primary,
+			accent: $accent, warn: $warn)), false);
+
+@include angular-dia-theme($theme);

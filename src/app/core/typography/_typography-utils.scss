@@ -1,0 +1,62 @@
+// Utility for fetching a nested value from a typography config.
+@function _dia-get-type-value($config, $level, $name) {
+	@return map-get(map-get($config, $level), $name);
+}
+
+// Gets the font size for a level inside a typography config.
+@function dia-font-size($config, $level) {
+	@return _dia-get-type-value($config, $level, font-size);
+}
+
+// Gets the line height for a level inside a typography config.
+@function dia-line-height($config, $level) {
+	@return _dia-get-type-value($config, $level, line-height);
+}
+
+// Gets the font weight for a level inside a typography config.
+@function dia-font-weight($config, $level) {
+	@return _dia-get-type-value($config, $level, font-weight);
+}
+
+// Gets the letter spacing for a level inside a typography config.
+@function dia-letter-spacing($config, $level) {
+	@return _dia-get-type-value($config, $level, letter-spacing);
+}
+
+// Gets the font-family from a typography config and removes the quotes around it.
+@function dia-font-family($config, $level: null) {
+	$font-family: map-get($config, font-family);
+
+	@if $level !=null {
+		$font-family: _dia-get-type-value($config, $level, font-family);
+	}
+
+	// Guard against unquoting non-string values, because it's deprecated.
+	@return if(type-of($font-family)==string, unquote($font-family), $font-family);
+}
+
+// Outputs the shorthand `font` CSS property, based on a set of typography values. Falls back to
+// the individual properties if a value that isn't allowed in the shorthand is passed in.
+@mixin dia-typography-font-shorthand($font-size, $font-weight, $line-height, $font-family) {
+	@if ($font-size==inherit or $font-weight==inherit or $line-height==inherit or $font-family==inherit or $font-size==null or $font-weight==null or $line-height==null or $font-family==null) {
+		font-size: $font-size;
+		font-weight: $font-weight;
+		line-height: $line-height;
+		font-family: $font-family;
+	}
+
+	@else {
+		font: $font-weight #{$font-size}/#{$line-height} $font-family;
+	}
+}
+
+// Converts a typography level into CSS styles.
+@mixin dia-typography-level-to-styles($config, $level) {
+	$font-size: dia-font-size($config, $level);
+	$font-weight: dia-font-weight($config, $level);
+	$line-height: dia-line-height($config, $level);
+	$font-family: dia-font-family($config, $level);
+
+	@include dia-typography-font-shorthand($font-size, $font-weight, $line-height, $font-family);
+	letter-spacing: dia-letter-spacing($config, $level);
+}

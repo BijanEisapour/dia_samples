@@ -4,17 +4,19 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ButtonComponent } from './components/button/button.component';
+
+import { MatButtonModule } from "./button/button-module";
 
 @NgModule({
-	declarations: [ AppComponent, ButtonComponent ],
+	declarations: [AppComponent],
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
 		FormsModule,
-		ReactiveFormsModule
+		ReactiveFormsModule,
+		MatButtonModule
 	],
 	providers: [],
-	bootstrap: [ AppComponent ]
+	bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
