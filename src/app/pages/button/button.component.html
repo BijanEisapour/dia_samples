@@ -1,48 +1,82 @@
-<dia-card>
+<dia-card class="playground">
 	<dia-card-header>
 		<dia-card-title>Playground</dia-card-title>
 	</dia-card-header>
 	<dia-card-content>
-		<ul>
-			<li>
-				<input checked="checked" type="radio" name="ButtonType_radio" value="dia-button"
-					(change)="changeButtonType($event, false, 'Basic')" />
-				<label> Basic</label>
-			</li>
-			<li>
-				<input type="radio" name="ButtonType_radio" value="dia-raised-button"
-					(change)="changeButtonType($event, false, 'Raised')" />
-				<label> Raised</label>
-			</li>
-			<li>
-				<input type="radio" name="ButtonType_radio" value="dia-stroked-button"
-					(change)="changeButtonType($event, false, 'Stroked')" />
-				<label> Stroked</label>
-			</li>
-			<li>
-				<input type="radio" name="ButtonType_radio" value="dia-flat-button"
-					(change)="changeButtonType($event, false, 'Flat')" />
-				<label> Flat</label>
-			</li>
-			<li>
-				<input type="radio" name="ButtonType_radio" value="dia-icon-button"
-					(change)="changeButtonType($event, false)" />
-				<label> Icon</label>
-			</li>
-			<li>
-				<input type="radio" name="ButtonType_radio" value="dia-fab"
-					(change)="changeButtonType($event, false)" />
-				<label> FAB</label>
-			</li>
-			<li>
-				<input type="radio" name="ButtonType_radio" value="dia-mini-fab"
-					(change)="changeButtonType($event, false)" />
-				<label> Mini FAB</label>
-			</li>
-		</ul>
+		<div class="options types">
+			<div class="dia-title">Types</div>
+			<div class="option">
+				<input id="option__basic" type="radio" name="type" value="dia-button"
+					(change)="changeButtonType($event)" />
+				<label for="option__basic">Basic</label>
+			</div>
+			<div class="option">
+				<input id="option__raised" type="radio" name="type" value="dia-raised-button"
+					(change)="changeButtonType($event)" />
+				<label for="option__raised">Raised</label>
+			</div>
+			<div class="option">
+				<input id="option__stroked" type="radio" name="type" value="dia-stroked-button"
+					(change)="changeButtonType($event)" />
+				<label for="option__stroked">Stroked</label>
+			</div>
+			<div class="option">
+				<input id="option__flat" checked="checked" type="radio" name="type" value="dia-flat-button"
+					(change)="changeButtonType($event)" />
+				<label for="option__flat">Flat</label>
+			</div>
+			<div class="option">
+				<input id="option__icon" type="radio" name="type" value="dia-icon-button"
+					(change)="changeButtonType($event)" />
+				<label for="option__icon">Icon</label>
+			</div>
+			<div class="option">
+				<input id="option__fab" type="radio" name="type" value="dia-fab" (change)="changeButtonType($event)" />
+				<label for="option__fab">FAB</label>
+			</div>
+			<div class="option">
+				<input id="option__mini-fab" type="radio" name="type" value="dia-mini-fab"
+					(change)="changeButtonType($event)" />
+				<label for="option__mini-fab">Mini FAB</label>
+			</div>
+		</div>
 
-		<div #playgroundButtons *ngIf="playgroundButtons">
-			<button dia-button>Button</button>
+		<div class="options colors">
+			<div class="dia-title">Colors</div>
+			<div class="option">
+				<input id="option__no-color" type="radio" name="color" value="" (change)="changeButtonColor($event)" />
+				<label for="option__no-color">No Color</label>
+			</div>
+			<div class="option">
+				<input id="option__primary" checked="checked" type="radio" name="color" value="dia-primary"
+					(change)="changeButtonColor($event)" />
+				<label for="option__primary">Primary</label>
+			</div>
+			<div class="option">
+				<input id="option__accent" type="radio" name="color" value="dia-accent"
+					(change)="changeButtonColor($event)" />
+				<label for="option__accent">Accent</label>
+			</div>
+			<div class="option">
+				<input id="option__warn" type="radio" name="color" value="dia-warn"
+					(change)="changeButtonColor($event)" />
+				<label for="option__warn">Warn</label>
+			</div>
+			<div class="option">
+				<input id="option__success" type="radio" name="color" value="dia-success"
+					(change)="changeButtonColor($event)" />
+				<label for="option__success">Success</label>
+			</div>
+			<div class="option">
+				<input id="option__disabled" type="radio" name="color" value="dia-button-disabled"
+					(change)="changeButtonColor($event, true)" />
+				<label for="option__disabled">Disabled</label>
+			</div>
+		</div>
+
+		<div #playgroundButtons *ngIf="playgroundButtons" class="buttons">
+			<button dia-flat-button color="primary">Button</button>
+			<a dia-flat-button href="https://www.google.com/" target="_blank">Anchor</a>
 		</div>
 	</dia-card-content>
 </dia-card>

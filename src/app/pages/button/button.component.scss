@@ -7,16 +7,49 @@
 
 		dia-card-content {
 			padding: 0 40px;
+		}
 
-			ul {
-				list-style: none;
-				padding: 0;
+		&.playground {
+			dia-card-content {
+				display: grid;
+				grid-template-columns: auto auto 1fr;
+
+				.options {
+					margin-right: 40px;
+
+					.option {
+						margin-left: 10px;
+						padding: 5px 10px;
+
+						input,
+						label {
+							cursor: pointer;
+						}
+
+						label {
+							margin-left: 5px;
+						}
+					}
+				}
+
+				.buttons {
+					justify-self: center;
+					align-self: center;
+
+					button {
+						min-width: 200px;
+						min-height: 40px;
+
+						margin-right: 200px;
+
+						&.dia-fab,
+						&.dia-mini-fab {
+							min-width: unset;
+						}
+					}
+				}
 			}
 		}
-	}
-
-	section {
-		display: table;
 	}
 
 	dia-divider {
@@ -26,40 +59,44 @@
 		width: unset;
 	}
 
-	.example-label {
-		display: table-cell;
-		font-size: 14px;
-		margin-left: 8px;
-		min-width: 120px;
-	}
+	section {
+		display: table;
 
-	.example-button-row {
-		display: table-cell;
-
-		>*:not(.example-flex-container) {
-			width: 100px;
+		.example-label {
+			display: table-cell;
+			font-size: 14px;
+			margin-left: 8px;
+			min-width: 120px;
 		}
 
-		>.dia-button-base {
-			margin: 8px 8px 8px 0;
+		.example-button-row {
+			display: table-cell;
+
+			>*:not(.example-flex-container) {
+				width: 100px;
+			}
+
+			>.dia-button-base {
+				margin: 8px 8px 8px 0;
+			}
 		}
-	}
 
-	.example-flex-container {
-		display: flex;
-		justify-content: flex-start;
-		flex-wrap: wrap;
+		.example-flex-container {
+			display: flex;
+			justify-content: flex-start;
+			flex-wrap: wrap;
 
-		>* {
-			width: 100px;
-			margin: 8px 8px 8px 0;
+			>* {
+				width: 100px;
+				margin: 8px 8px 8px 0;
+			}
 		}
-	}
 
-	.example-button-container {
-		display: flex;
-		justify-content: center;
-		width: 120px;
+		.example-button-container {
+			display: flex;
+			justify-content: center;
+			width: 120px;
+		}
 	}
 }
 
