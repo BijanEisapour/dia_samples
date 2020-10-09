@@ -12,7 +12,7 @@ $dia-ripple-color-opacity: 0.1;
 		overflow: hidden;
 
 		// By default, every ripple container should have position: relative in favor of creating an
-		// easy API for developers using the MatRipple directive.
+		// easy API for developers using the DiaRipple directive.
 		position: relative;
 
 		// Promote containers that have ripples to a new layer. We want to target `:not(:empty)`,
@@ -66,7 +66,7 @@ $dia-ripple-color-opacity: 0.1;
 }
 
 @mixin dia-ripple-theme($theme-or-color-config) {
-	$theme: _dia-legacy-get-theme($theme-or-color-config);
+	$theme: $theme-or-color-config;
 
 	@include _dia-check-duplicate-theme-styles($theme, 'dia-ripple') {
 		$color: dia-get-color-config($theme);

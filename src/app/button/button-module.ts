@@ -1,20 +1,20 @@
 import { NgModule } from '@angular/core';
-import { MatCommonModule, MatRippleModule } from '../core';
-import { MatAnchor, MatButton } from './button';
+import { DiaCommonModule, DiaRippleModule } from '../core';
+import { DiaAnchor, DiaButton } from './button';
 
 @NgModule({
 	imports: [
-		MatRippleModule,
-		MatCommonModule,
+		DiaRippleModule,
+		DiaCommonModule,
 	],
 	exports: [
-		MatButton,
-		MatAnchor,
-		MatCommonModule,
+		DiaButton,
+		DiaAnchor,
+		DiaCommonModule,
 	],
 	declarations: [
-		MatButton,
-		MatAnchor,
+		DiaButton,
+		DiaAnchor,
 	],
 })
-export class MatButtonModule { }
+export class DiaButtonModule { }

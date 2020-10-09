@@ -3,10 +3,11 @@
 @include dia-core();
 
 $primary: dia-palette($dia-blue);
-$accent: dia-palette($dia-teal, A200, A100, A400);
-$warn: dia-palette($dia-orange);
+$accent: dia-palette($dia-orange, A200, A100, A400);
+$warn: dia-palette($dia-red, 400);
+$success: dia-palette($dia-green, 400);
 
 $theme: dia-theme((color: (primary: $primary,
-			accent: $accent, warn: $warn)), false);
+			accent: $accent, warn: $warn, success: $success)), true);
 
 @include angular-dia-theme($theme);

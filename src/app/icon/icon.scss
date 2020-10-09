@@ -1,0 +1,36 @@
+@import '../core/style/variables';
+
+$dia-icon-size: 24px !default;
+
+.dia-icon {
+	background-repeat: no-repeat;
+	display: inline-block;
+	fill: currentColor;
+	height: $dia-icon-size;
+	width: $dia-icon-size;
+
+	&.dia-icon-inline {
+		font-size: inherit;
+		height: inherit;
+		line-height: inherit;
+		width: inherit;
+	}
+}
+
+[dir='rtl'] .dia-icon-rtl-mirror {
+	transform: scale(-1, 1);
+}
+
+.dia-form-field:not(.dia-form-field-appearance-legacy) {
+
+	.dia-form-field-prefix,
+	.dia-form-field-suffix {
+		.dia-icon {
+			display: block;
+		}
+
+		.dia-icon-button .dia-icon {
+			margin: auto;
+		}
+	}
+}

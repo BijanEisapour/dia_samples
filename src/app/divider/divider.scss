@@ -1,0 +1,24 @@
+$dia-divider-width: 1px;
+$dia-divider-inset-margin: 80px;
+
+.dia-divider {
+	display: block;
+	margin: 0;
+	border-top-width: $dia-divider-width;
+	border-top-style: solid;
+
+	&.dia-divider-vertical {
+		border-top: 0;
+		border-right-width: $dia-divider-width;
+		border-right-style: solid;
+	}
+
+	&.dia-divider-inset {
+		margin-left: $dia-divider-inset-margin;
+
+		[dir='rtl'] & {
+			margin-left: auto;
+			margin-right: $dia-divider-inset-margin;
+		}
+	}
+}

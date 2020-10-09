@@ -1,5 +1,8 @@
 @import './typography';
 @import '../../button/button-theme';
+@import '../../card/card-theme';
+@import '../../divider/divider-theme';
+@import '../../icon/icon-theme';
 
 @mixin angular-dia-typography($config-or-theme: null) {
 	$config: if(_dia-is-theme-object($config-or-theme),
@@ -10,5 +13,9 @@
 		$config: dia-typography-config();
 	}
 
+	@include dia-base-typography($config);
 	@include dia-button-typography($config);
+	@include dia-card-typography($config);
+	@include dia-divider-typography($config);
+	@include dia-icon-typography($config);
 }

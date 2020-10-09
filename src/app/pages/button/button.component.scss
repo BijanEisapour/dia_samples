@@ -1,20 +1,64 @@
-.main {
+:host {
+	display: block;
 	padding: 50px;
-}
 
-.DivSetting {
-	background-color: yellow;
-	padding: 20px;
-}
+	dia-card {
+		margin-bottom: 20px;
 
-.DivSetting ul {
-	list-style: none;
-}
+		dia-card-content {
+			padding: 0 40px;
 
-.DivSetting ul li {
-	padding: 5px;
-}
+			ul {
+				list-style: none;
+				padding: 0;
+			}
+		}
+	}
 
-.margin-div {
-	margin: 10px 0px;
+	section {
+		display: table;
+	}
+
+	dia-divider {
+		right: 32px;
+		left: 32px;
+
+		width: unset;
+	}
+
+	.example-label {
+		display: table-cell;
+		font-size: 14px;
+		margin-left: 8px;
+		min-width: 120px;
+	}
+
+	.example-button-row {
+		display: table-cell;
+
+		>*:not(.example-flex-container) {
+			width: 100px;
+		}
+
+		>.dia-button-base {
+			margin: 8px 8px 8px 0;
+		}
+	}
+
+	.example-flex-container {
+		display: flex;
+		justify-content: flex-start;
+		flex-wrap: wrap;
+
+		>* {
+			width: 100px;
+			margin: 8px 8px 8px 0;
+		}
+	}
+
+	.example-button-container {
+		display: flex;
+		justify-content: center;
+		width: 120px;
+	}
 }

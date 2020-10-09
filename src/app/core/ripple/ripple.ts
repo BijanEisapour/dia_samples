@@ -36,50 +36,50 @@ export interface RippleGlobalOptions {
 }
 
 /** Injection token that can be used to specify the global ripple options. */
-export const MAT_RIPPLE_GLOBAL_OPTIONS =
+export const DIA_RIPPLE_GLOBAL_OPTIONS =
 	new InjectionToken<RippleGlobalOptions>('dia-ripple-global-options');
 
 @Directive({
-	selector: '[dia-ripple], [matRipple]',
-	exportAs: 'matRipple',
+	selector: '[dia-ripple], [diaRipple]',
+	exportAs: 'diaRipple',
 	host: {
 		'class': 'dia-ripple',
 		'[class.dia-ripple-unbounded]': 'unbounded'
 	}
 })
-export class MatRipple implements OnInit, OnDestroy, RippleTarget {
+export class DiaRipple implements OnInit, OnDestroy, RippleTarget {
 
 	/** Custom color for all ripples. */
-	@Input('matRippleColor') color: string;
+	@Input('diaRippleColor') color: string;
 
 	/** Whether the ripples should be visible outside the component's bounds. */
-	@Input('matRippleUnbounded') unbounded: boolean;
+	@Input('diaRippleUnbounded') unbounded: boolean;
 
 	/**
 	 * Whether the ripple always originates from the center of the host element's bounds, rather
 	 * than originating from the location of the click event.
 	 */
-	@Input('matRippleCentered') centered: boolean;
+	@Input('diaRippleCentered') centered: boolean;
 
 	/**
 	 * If set, the radius in pixels of foreground ripples when fully expanded. If unset, the radius
 	 * will be the distance from the center of the ripple to the furthest corner of the host element's
 	 * bounding rectangle.
 	 */
-	@Input('matRippleRadius') radius: number = 0;
+	@Input('diaRippleRadius') radius: number = 0;
 
 	/**
 	 * Configuration for the ripple animation. Allows modifying the enter and exit animation
 	 * duration of the ripples. The animation durations will be overwritten if the
 	 * `NoopAnimationsModule` is being used.
 	 */
-	@Input('matRippleAnimation') animation: RippleAnimationConfig;
+	@Input('diaRippleAnimation') animation: RippleAnimationConfig;
 
 	/**
 	 * Whether click events will not trigger the ripple. Ripples can be still launched manually
 	 * by using the `launch()` method.
 	 */
-	@Input('matRippleDisabled')
+	@Input('diaRippleDisabled')
 	get disabled() { return this._disabled; }
 	set disabled(value: boolean) {
 		this._disabled = value;
@@ -91,7 +91,7 @@ export class MatRipple implements OnInit, OnDestroy, RippleTarget {
 	 * The element that triggers the ripple when click events are received.
 	 * Defaults to the directive's host element.
 	 */
-	@Input('matRippleTrigger')
+	@Input('diaRippleTrigger')
 	get trigger() { return this._trigger || this._elementRef.nativeElement; }
 	set trigger(trigger: HTMLElement) {
 		this._trigger = trigger;
@@ -111,7 +111,7 @@ export class MatRipple implements OnInit, OnDestroy, RippleTarget {
 	constructor(private _elementRef: ElementRef<HTMLElement>,
 		ngZone: NgZone,
 		platform: Platform,
-		@Optional() @Inject(MAT_RIPPLE_GLOBAL_OPTIONS) globalOptions?: RippleGlobalOptions,
+		@Optional() @Inject(DIA_RIPPLE_GLOBAL_OPTIONS) globalOptions?: RippleGlobalOptions,
 		@Optional() @Inject(ANIMATION_MODULE_TYPE) private _animationMode?: string) {
 
 		this._globalOptions = globalOptions || {};

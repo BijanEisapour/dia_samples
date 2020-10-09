@@ -27,7 +27,7 @@ export interface GranularSanityChecks {
 	imports: [BidiModule],
 	exports: [BidiModule],
 })
-export class MatCommonModule {
+export class DiaCommonModule {
 	private _hasDoneGlobalChecks = false;
 	private _sanityChecks: SanityChecks;
 	protected _document: Document;
@@ -43,7 +43,7 @@ export class MatCommonModule {
 		if (!this._hasDoneGlobalChecks) {
 			this._checkDoctypeIsDefined();
 			this._checkThemeIsPresent();
-			this._checkCdkVersionMatch();
+			this._checkCdkVersionDiach();
 			this._hasDoneGlobalChecks = true;
 		}
 	}
@@ -100,7 +100,7 @@ export class MatCommonModule {
 		this._document.body.removeChild(testElement);
 	}
 
-	private _checkCdkVersionMatch(): void {
+	private _checkCdkVersionDiach(): void {
 		const isEnabled = this._checksAreEnabled() &&
 			(this._sanityChecks === true || (this._sanityChecks as GranularSanityChecks).version);
 

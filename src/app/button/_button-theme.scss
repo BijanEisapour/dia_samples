@@ -10,6 +10,7 @@ $_dia-button-ripple-opacity: 0.1;
 	$primary: map-get($config, primary);
 	$accent: map-get($config, accent);
 	$warn: map-get($config, warn);
+	$success: map-get($config, success);
 
 	&.dia-primary .dia-button-focus-overlay {
 		background-color: dia-color($primary);
@@ -21,6 +22,10 @@ $_dia-button-ripple-opacity: 0.1;
 
 	&.dia-warn .dia-button-focus-overlay {
 		background-color: dia-color($warn);
+	}
+
+	&.dia-success .dia-button-focus-overlay {
+		background-color: dia-color($success);
 	}
 
 	&.dia-button-disabled .dia-button-focus-overlay {
@@ -41,6 +46,7 @@ $_dia-button-ripple-opacity: 0.1;
 	$primary: map-get($theme, primary);
 	$accent: map-get($theme, accent);
 	$warn: map-get($theme, warn);
+	$success: map-get($theme, success);
 
 	&.dia-primary .dia-ripple-element {
 		@include _dia-button-ripple-background($primary, $hue, $opacity);
@@ -53,12 +59,17 @@ $_dia-button-ripple-opacity: 0.1;
 	&.dia-warn .dia-ripple-element {
 		@include _dia-button-ripple-background($warn, $hue, $opacity);
 	}
+
+	&.dia-success .dia-ripple-element {
+		@include _dia-button-ripple-background($success, $hue, $opacity);
+	}
 }
 
 @mixin _dia-button-theme-property($theme, $property, $hue) {
 	$primary: map-get($theme, primary);
 	$accent: map-get($theme, accent);
 	$warn: map-get($theme, warn);
+	$success: map-get($theme, success);
 	$background: map-get($theme, background);
 	$foreground: map-get($theme, foreground);
 
@@ -74,9 +85,14 @@ $_dia-button-ripple-opacity: 0.1;
 		#{$property}: dia-color($warn, $hue);
 	}
 
+	&.dia-success {
+		#{$property}: dia-color($success, $hue);
+	}
+
 	&.dia-primary,
 	&.dia-accent,
 	&.dia-warn,
+	&.dia-success,
 	&.dia-button-disabled {
 		&.dia-button-disabled {
 			$palette: if($property=='color', $foreground, $background);
@@ -90,6 +106,7 @@ $_dia-button-ripple-opacity: 0.1;
 	$primary: map-get($config, primary);
 	$accent: map-get($config, accent);
 	$warn: map-get($config, warn);
+	$success: map-get($config, success);
 	$background: map-get($config, background);
 	$foreground: map-get($config, foreground);
 

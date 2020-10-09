@@ -19,7 +19,7 @@ import {
 	CanColorCtor,
 	CanDisableCtor,
 	CanDisableRippleCtor,
-	MatRipple,
+	DiaRipple,
 	mixinColor,
 	mixinDisabled,
 	mixinDisableRipple
@@ -38,22 +38,22 @@ const BUTTON_HOST_ATTRIBUTES = [
 	'dia-fab'
 ];
 
-class MatButtonBase {
+class DiaButtonBase {
 	constructor(public _elementRef: ElementRef) { }
 }
 
-const _MatButtonMixinBase: CanDisableRippleCtor &
+const _DiaButtonMixinBase: CanDisableRippleCtor &
 	CanDisableCtor &
 	CanColorCtor &
-	typeof MatButtonBase = mixinColor(
-		mixinDisabled(mixinDisableRipple(MatButtonBase))
+	typeof DiaButtonBase = mixinColor(
+		mixinDisabled(mixinDisableRipple(DiaButtonBase))
 	);
 
 @Component({
 	selector: `button[dia-button], button[dia-raised-button], button[dia-icon-button],
              button[dia-fab], button[dia-mini-fab], button[dia-stroked-button],
              button[dia-flat-button]`,
-	exportAs: 'matButton',
+	exportAs: 'diaButton',
 	host: {
 		'[attr.disabled]': 'disabled || null',
 		'[class._dia-animation-noopable]':
@@ -67,7 +67,7 @@ const _MatButtonMixinBase: CanDisableRippleCtor &
 	encapsulation: ViewEncapsulation.None,
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MatButton extends _MatButtonMixinBase
+export class DiaButton extends _DiaButtonMixinBase
 	implements AfterViewInit,
 	OnDestroy,
 	CanDisable,
@@ -81,7 +81,7 @@ export class MatButton extends _MatButtonMixinBase
 
 	readonly isIconButton: boolean = this._hasHostAttributes('dia-icon-button');
 
-	@ViewChild(MatRipple) ripple: MatRipple;
+	@ViewChild(DiaRipple) ripple: DiaRipple;
 
 	constructor(
 		elementRef: ElementRef,
@@ -91,9 +91,6 @@ export class MatButton extends _MatButtonMixinBase
 		public _animationMode: string
 	) {
 		super(elementRef);
-
-		console.log("Button");
-
 
 		for (const attr of BUTTON_HOST_ATTRIBUTES) {
 			if (this._hasHostAttributes(attr)) {
@@ -141,7 +138,7 @@ export class MatButton extends _MatButtonMixinBase
 @Component({
 	selector: `a[dia-button], a[dia-raised-button], a[dia-icon-button], a[dia-fab],
              a[dia-mini-fab], a[dia-stroked-button], a[dia-flat-button]`,
-	exportAs: 'matButton, matAnchor',
+	exportAs: 'diaButton, matAnchor',
 	host: {
 		'[attr.tabindex]': 'disabled ? -1 : (tabIndex || 0)',
 		'[attr.disabled]': 'disabled || null',
@@ -158,7 +155,7 @@ export class MatButton extends _MatButtonMixinBase
 	encapsulation: ViewEncapsulation.None,
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MatAnchor extends MatButton {
+export class DiaAnchor extends DiaButton {
 	@Input() tabIndex: number;
 
 	constructor(

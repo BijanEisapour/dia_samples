@@ -1,0 +1,56 @@
+@import '../core/theming/theming';
+@import '../core/theming/check-duplicate-styles';
+
+@mixin dia-icon-color($config-or-theme) {
+	$config: dia-get-color-config($config-or-theme);
+	$primary: map-get($config, primary);
+	$accent: map-get($config, accent);
+	$warn: map-get($config, warn);
+	$success: map-get($config, success);
+	$background: map-get($config, background);
+	$foreground: map-get($config, foreground);
+
+	.dia-icon {
+		&.dia-primary {
+			color: dia-color($primary, text);
+		}
+
+		&.dia-accent {
+			color: dia-color($accent, text);
+		}
+
+		&.dia-warn {
+			color: dia-color($warn, text);
+		}
+
+		&.dia-success {
+			color: dia-color($success, text);
+		}
+	}
+}
+
+@mixin dia-icon-typography($config-or-theme) {}
+
+@mixin _dia-icon-density($config-or-theme) {}
+
+@mixin dia-icon-theme($theme-or-color-config) {
+	$theme: $theme-or-color-config;
+
+	@include _dia-check-duplicate-theme-styles($theme, 'dia-icon') {
+		$color: dia-get-color-config($theme);
+		$density: dia-get-density-config($theme);
+		$typography: dia-get-typography-config($theme);
+
+		@if $color !=null {
+			@include dia-icon-color($color);
+		}
+
+		@if $density !=null {
+			@include _dia-icon-density($density);
+		}
+
+		@if $typography !=null {
+			@include dia-icon-typography($typography);
+		}
+	}
+}

@@ -53,15 +53,20 @@ $_dia-theme-generate-default-density: true !default;
 		@else if not map_get($color, warn) {
 			@error 'Theme does not define a valid "warn" palette.';
 		}
+
+		@else if not map_get($color, success) {
+			@error 'Theme does not define a valid "success" palette.';
+		}
 	}
 
 	@return $theme;
 }
 
-@function _dia-create-color-config($is-dark, $primary, $accent, $warn: null) {
+@function _dia-create-color-config($is-dark, $primary, $accent, $warn: null, $success: null) {
 	@return (primary: $primary,
 		accent: $accent,
 		warn: if($warn !=null, $warn, dia-palette($dia-red)),
+		success: if($success !=null, $success, dia-palette($dia-green)),
 		is-dark: $is-dark,
 		foreground: if($is-dark==true, $dia-dark-theme-foreground, $dia-light-theme-foreground),
 		background: if($is-dark==true, $dia-dark-theme-background, $dia-light-theme-background));
@@ -75,7 +80,8 @@ $_dia-theme-generate-default-density: true !default;
 		$primary: map_get($color-settings, primary);
 		$accent: map_get($color-settings, accent);
 		$warn: map_get($color-settings, warn);
-		$result: map_merge($result, (color: _dia-create-color-config($is-dark, $primary, $accent, $warn)));
+		$success: map_get($color-settings, success);
+		$result: map_merge($result, (color: _dia-create-color-config($is-dark, $primary, $accent, $warn, $success)));
 	}
 
 	@return _dia-validate-theme($result);

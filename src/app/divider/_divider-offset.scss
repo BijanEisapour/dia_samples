@@ -1,0 +1,10 @@
+@mixin dia-inset-divider-offset($offset, $padding) {
+	$dia-inset-divider-offset: #{(2 * $padding) + $offset};
+	margin-left: $dia-inset-divider-offset;
+	width: calc(100% - #{$dia-inset-divider-offset});
+
+	[dir='rtl'] & {
+		margin-left: auto;
+		margin-right: $dia-inset-divider-offset;
+	}
+}

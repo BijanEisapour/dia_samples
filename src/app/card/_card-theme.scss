@@ -1,0 +1,73 @@
+@import '../core/theming/palette';
+@import '../core/theming/theming';
+@import '../core/theming/check-duplicate-styles';
+@import '../core/style/elevation';
+@import '../core/typography/typography-utils';
+
+@mixin dia-card-color($config-or-theme) {
+	$config: dia-get-color-config($config-or-theme);
+	$background: map-get($config, background);
+	$foreground: map-get($config, foreground);
+
+	.dia-card {
+		@include _dia-theme-overridable-elevation(1, $config);
+		background: dia-color($background, card);
+		color: dia-color($foreground, text);
+
+		&.dia-card-flat {
+			@include _dia-theme-overridable-elevation(0, $config);
+		}
+	}
+
+	.dia-card-subtitle {
+		color: dia-color($foreground, secondary-text);
+	}
+}
+
+@mixin dia-card-typography($config-or-theme) {
+	$config: dia-get-typography-config($config-or-theme);
+
+	.dia-card {
+		font-family: dia-font-family($config);
+	}
+
+	.dia-card-title {
+		font: {
+			size: dia-font-size($config, headline);
+			weight: dia-font-weight($config, title);
+		}
+	}
+
+	.dia-card-header .dia-card-title {
+		font-size: dia-font-size($config, title);
+	}
+
+	.dia-card-subtitle,
+	.dia-card-content {
+		font-size: dia-font-size($config, body-1);
+	}
+}
+
+@mixin _dia-card-density($config-or-theme) {}
+
+@mixin dia-card-theme($theme-or-color-config) {
+	$theme: $theme-or-color-config;
+
+	@include _dia-check-duplicate-theme-styles($theme, 'dia-card') {
+		$color: dia-get-color-config($theme);
+		$density: dia-get-density-config($theme);
+		$typography: dia-get-typography-config($theme);
+
+		@if $color !=null {
+			@include dia-card-color($color);
+		}
+
+		@if $density !=null {
+			@include _dia-card-density($density);
+		}
+
+		@if $typography !=null {
+			@include dia-card-typography($typography);
+		}
+	}
+}

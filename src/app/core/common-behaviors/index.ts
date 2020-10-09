@@ -1,5 +1,5 @@
 export {
-	MatCommonModule,
+	DiaCommonModule,
 	MATERIAL_SANITY_CHECKS,
 	SanityChecks,
 	GranularSanityChecks

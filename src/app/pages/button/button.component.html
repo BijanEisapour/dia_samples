@@ -1,6 +1,8 @@
-<div class="main">
-	<div class="DivSetting">
-		<h2>Props</h2>
+<dia-card>
+	<dia-card-header>
+		<dia-card-title>Props</dia-card-title>
+	</dia-card-header>
+	<dia-card-content>
 		<ul>
 			<li>
 				<input type="checkbox" id="Active_ckbox" name="Active_ckbox" value="Active" /><label for="Active_ckbox">
@@ -16,11 +18,13 @@
 			</li>
 			<li>
 				<input type="checkbox" id="Loading_ckbox" name="Loading_ckbox" value="Loading" /><label
-					for="Loading_ckbox"> Loading</label>
+					for="Loading_ckbox">
+					Loading</label>
 			</li>
 			<li>
 				<input type="checkbox" id="Minimal_ckbox" name="Minimal_ckbox" value="Minimal" /><label
-					for="Minimal_ckbox"> Loading</label>
+					for="Minimal_ckbox">
+					Loading</label>
 			</li>
 			<li>
 				<input type="checkbox" id="Outlined_ckbox" name="Outlined_ckbox" value="Outlined" /><label
@@ -38,7 +42,14 @@
 				</select>
 			</li>
 		</ul>
-		<h2>Example</h2>
+	</dia-card-content>
+</dia-card>
+
+<dia-card>
+	<dia-card-header>
+		<dia-card-title>???</dia-card-title>
+	</dia-card-header>
+	<dia-card-content>
 		<ul>
 			<li>
 				<input type="checkbox" id="IconsOnly_ckbox" name="IconsOnly_ckbox" value="IconsOnly" />
@@ -46,76 +57,162 @@
 
 			</li>
 		</ul>
-	</div>
-	<div class="margin-div"></div>
-	<section>
-		<div class="example-label">Basic</div>
-		<div class="example-button-row">
-			<button dia-button>Basic</button>
-			<button dia-button color="primary">Primary</button>
-			<button dia-button color="accent">Accent</button>
-			<button dia-button color="warn">Warn</button>
-			<button dia-button disabled>Disabled</button>
-			<a href="https://www.google.com/" target="_blank">Link</a>
-		</div>
-	</section>
-	<div class="margin-div"></div>
-	<section>
-		<div class="example-label">Raised</div>
-		<div class="example-button-row">
-			<button dia-raised-button>Basic</button>
-			<button dia-raised-button color="primary">Primary</button>
-			<button dia-raised-button color="accent">Accent</button>
-			<button dia-raised-button color="warn">Warn</button>
-			<button dia-raised-button disabled>Disabled</button>
-			<a href="https://www.google.com/" target="_blank">Link</a>
-		</div>
-	</section>
-	<div class="margin-div"></div>
-	<section>
-		<div class="example-label">Stroked</div>
-		<div class="example-button-row">
-			<button dia-stroked-button>Basic</button>
-			<button dia-stroked-button color="primary">Primary</button>
-			<button dia-stroked-button color="accent">Accent</button>
-			<button dia-stroked-button color="warn">Warn</button>
-			<button dia-stroked-button disabled>Disabled</button>
-			<a href="https://www.google.com/" target="_blank">Link</a>
-		</div>
-	</section>
-	<div class="margin-div"></div>
-	<section>
-		<div class="example-label">Flat</div>
-		<div class="example-button-row">
-			<button dia-flat-button>Basic</button>
-			<button dia-flat-button color="primary">Primary</button>
-			<button dia-flat-button color="accent">Accent</button>
-			<button dia-flat-button color="warn">Warn</button>
-			<button dia-flat-button disabled>Disabled</button>
-			<a href="https://www.google.com/" target="_blank">Link</a>
-		</div>
-	</section>
-	<div class="margin-div"></div>
-	<section>
-		<div class="example-label">Icon</div>
-		<div class="example-button-row">
-			<div class="example-flex-container">
-				<button aria-label="Example icon button with a vertical three dot icon">
-					more_vert
-				</button>
-				<button color="primary" aria-label="Example icon button with a home icon">
-					home
-				</button>
-				<button color="accent" aria-label="Example icon button with a menu icon">
-					menu
-				</button>
-				<button color="warn" aria-label="Example icon button with a heart icon">
-					favorite
-				</button>
-				<button disabled aria-label="Example icon button with a open in new tab icon">
-					open_in_new
-				</button>
+	</dia-card-content>
+</dia-card>
+
+<dia-card>
+	<dia-card-header>
+		<dia-card-title>Examples</dia-card-title>
+	</dia-card-header>
+	<dia-card-content>
+		<section>
+			<div class="example-label">Basic</div>
+			<div class="example-button-row">
+				<button dia-button>Basic</button>
+				<button dia-button color="primary">Primary</button>
+				<button dia-button color="accent">Accent</button>
+				<button dia-button color="warn">Warn</button>
+				<button dia-button color="success">Success</button>
+				<button dia-button disabled>Disabled</button>
+				<a dia-button href="https://www.google.com/" target="_blank">Link</a>
 			</div>
-		</div>
-	</section>
-</div>
+		</section>
+		<dia-divider></dia-divider>
+		<section>
+			<div class="example-label">Raised</div>
+			<div class="example-button-row">
+				<button dia-raised-button>Basic</button>
+				<button dia-raised-button color="primary">Primary</button>
+				<button dia-raised-button color="accent">Accent</button>
+				<button dia-raised-button color="warn">Warn</button>
+				<button dia-raised-button color="success">Success</button>
+				<button dia-raised-button disabled>Disabled</button>
+				<a dia-raised-button href="https://www.google.com/" target="_blank">Link</a>
+			</div>
+		</section>
+		<dia-divider></dia-divider>
+		<section>
+			<div class="example-label">Stroked</div>
+			<div class="example-button-row">
+				<button dia-stroked-button>Basic</button>
+				<button dia-stroked-button color="primary">Primary</button>
+				<button dia-stroked-button color="accent">Accent</button>
+				<button dia-stroked-button color="warn">Warn</button>
+				<button dia-stroked-button color="success">Success</button>
+				<button dia-stroked-button disabled>Disabled</button>
+				<a dia-stroked-button href="https://www.google.com/" target="_blank">Link</a>
+			</div>
+		</section>
+		<dia-divider></dia-divider>
+		<section>
+			<div class="example-label">Flat</div>
+			<div class="example-button-row">
+				<button dia-flat-button>Basic</button>
+				<button dia-flat-button color="primary">Primary</button>
+				<button dia-flat-button color="accent">Accent</button>
+				<button dia-flat-button color="warn">Warn</button>
+				<button dia-flat-button color="success">Success</button>
+				<button dia-flat-button disabled>Disabled</button>
+				<a dia-flat-button href="https://www.google.com/" target="_blank">Link</a>
+			</div>
+		</section>
+		<dia-divider></dia-divider>
+		<section>
+			<div class="example-label">Icon</div>
+			<div class="example-button-row">
+				<div class="example-flex-container">
+					<button dia-icon-button aria-label="Example icon button with a vertical three dot icon">
+						<dia-icon>more_vert</dia-icon>
+					</button>
+					<button dia-icon-button color="primary" aria-label="Example icon button with a home icon">
+						<dia-icon>home</dia-icon>
+					</button>
+					<button dia-icon-button color="accent" aria-label="Example icon button with a grade icon">
+						<dia-icon>grade</dia-icon>
+					</button>
+					<button dia-icon-button color="warn" aria-label="Example icon button with a heart icon">
+						<dia-icon>favorite</dia-icon>
+					</button>
+					<button dia-icon-button color="success" aria-label="Example icon button with a thumb up icon">
+						<dia-icon>thumb_up_alt</dia-icon>
+					</button>
+					<button dia-icon-button disabled aria-label="Example icon button with a open in new tab icon">
+						<dia-icon>open_in_new</dia-icon>
+					</button>
+				</div>
+			</div>
+		</section>
+		<dia-divider></dia-divider>
+		<section>
+			<div class="example-label">FAB</div>
+			<div class="example-button-row">
+				<div class="example-flex-container">
+					<div class="example-button-container">
+						<button dia-button disabled>N/A</button>
+					</div>
+					<div class="example-button-container">
+						<button dia-fab color="primary" aria-label="Example icon button with a home icon">
+							<dia-icon>home</dia-icon>
+						</button>
+					</div>
+					<div class="example-button-container">
+						<button dia-fab color="accent" aria-label="Example icon button with a bookmark icon">
+							<dia-icon>bookmark</dia-icon>
+						</button>
+					</div>
+					<div class="example-button-container">
+						<button dia-fab color="warn" aria-label="Example icon button with a delete icon">
+							<dia-icon>delete</dia-icon>
+						</button>
+					</div>
+					<div class="example-button-container">
+						<button dia-fab color="success" aria-label="Example icon button with a add icon">
+							<dia-icon>add</dia-icon>
+						</button>
+					</div>
+					<div class="example-button-container">
+						<button dia-fab disabled aria-label="Example icon button with a heart icon">
+							<dia-icon>favorite</dia-icon>
+						</button>
+					</div>
+				</div>
+			</div>
+		</section>
+		<dia-divider></dia-divider>
+		<section>
+			<div class="example-label">Mini FAB</div>
+			<div class="example-button-row">
+				<div class="example-flex-container">
+					<div class="example-button-container">
+						<button dia-button disabled>N/A</button>
+					</div>
+					<div class="example-button-container">
+						<button dia-mini-fab color="primary" aria-label="Example icon button with a menu icon">
+							<dia-icon>menu</dia-icon>
+						</button>
+					</div>
+					<div class="example-button-container">
+						<button dia-mini-fab color="accent" aria-label="Example icon button with a plus one icon">
+							<dia-icon>plus_one</dia-icon>
+						</button>
+					</div>
+					<div class="example-button-container">
+						<button dia-mini-fab color="warn" aria-label="Example icon button with a close icon">
+							<dia-icon>close</dia-icon>
+						</button>
+					</div>
+					<div class="example-button-container">
+						<button dia-mini-fab color="success" aria-label="Example icon button with a done icon">
+							<dia-icon>done</dia-icon>
+						</button>
+					</div>
+					<div class="example-button-container">
+						<button dia-mini-fab disabled aria-label="Example icon button with a home icon">
+							<dia-icon>home</dia-icon>
+						</button>
+					</div>
+				</div>
+			</div>
+		</section>
+	</dia-card-content>
+</dia-card>

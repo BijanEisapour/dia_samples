@@ -5,7 +5,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { MatButtonModule } from "./button/button-module";
+import { DiaCardModule } from "./card/card-module";
+import { DiaButtonModule } from "./button/button-module";
+import { DiaIconModule } from "./icon/icon-module";
+import { DiaDividerModule } from "./divider/divider-module";
+
 import { ButtonComponent } from './pages/button/button.component';
 
 @NgModule({
@@ -15,7 +19,10 @@ import { ButtonComponent } from './pages/button/button.component';
 		AppRoutingModule,
 		FormsModule,
 		ReactiveFormsModule,
-		MatButtonModule
+		DiaCardModule,
+		DiaButtonModule,
+		DiaIconModule,
+		DiaDividerModule
 	],
 	providers: [],
 	bootstrap: [AppComponent]

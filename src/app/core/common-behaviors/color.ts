@@ -12,7 +12,7 @@ export interface HasElementRef {
 	_elementRef: ElementRef;
 }
 
-export type ThemePalette = 'primary' | 'accent' | 'warn' | undefined;
+export type ThemePalette = 'primary' | 'accent' | 'warn' | 'success' | undefined;
 
 export function mixinColor<T extends Constructor<HasElementRef>>(
 	base: T, defaultColor?: ThemePalette): CanColorCtor & T {

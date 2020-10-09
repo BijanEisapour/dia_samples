@@ -1,0 +1,42 @@
+@import '../core/theming/palette';
+@import '../core/theming/theming';
+@import '../core/theming/check-duplicate-styles';
+
+@mixin dia-divider-color($config-or-theme) {
+	$config: dia-get-color-config($config-or-theme);
+	$foreground: map-get($config, foreground);
+
+	.dia-divider {
+		border-top-color: dia-color($foreground, divider);
+	}
+
+	.dia-divider-vertical {
+		border-right-color: dia-color($foreground, divider);
+	}
+}
+
+@mixin dia-divider-typography($config-or-theme) {}
+
+@mixin _dia-divider-density($config-or-theme) {}
+
+@mixin dia-divider-theme($theme-or-color-config) {
+	$theme: $theme-or-color-config;
+
+	@include _dia-check-duplicate-theme-styles($theme, 'dia-divider') {
+		$color: dia-get-color-config($theme);
+		$density: dia-get-density-config($theme);
+		$typography: dia-get-typography-config($theme);
+
+		@if $color !=null {
+			@include dia-divider-color($color);
+		}
+
+		@if $density !=null {
+			@include _dia-divider-density($density);
+		}
+
+		@if $typography !=null {
+			@include dia-divider-typography($typography);
+		}
+	}
+}

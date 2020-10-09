@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { PlatformModule } from '@angular/cdk/platform';
-import { MatCommonModule } from '../common-behaviors/common-module';
-import { MatRipple } from './ripple';
+import { DiaCommonModule } from '../common-behaviors/common-module';
+import { DiaRipple } from './ripple';
 
 export * from './ripple';
 export * from './ripple-ref';
 export * from './ripple-renderer';
 
 @NgModule({
-	imports: [MatCommonModule, PlatformModule],
-	exports: [MatRipple, MatCommonModule],
-	declarations: [MatRipple],
+	imports: [DiaCommonModule, PlatformModule],
+	exports: [DiaRipple, DiaCommonModule],
+	declarations: [DiaRipple],
 })
-export class MatRippleModule { }
+export class DiaRippleModule { }

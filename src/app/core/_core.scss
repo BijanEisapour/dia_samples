@@ -2,12 +2,10 @@
 @import '../../../node_modules/@angular/cdk/a11y/a11y';
 @import '../../../node_modules/@angular/cdk/text-field/text-field';
 
-// Core styles that can be used to apply material design treatments to any element.
 @import './style/elevation';
 @import './focus-indicators/focus-indicators';
 @import './typography/all-typography';
 
-// Mixin that renders all of the core styles that are not theme-dependent.
 @mixin dia-core($typography-config: null) {
 	@include angular-dia-typography($typography-config);
 	@include cdk-a11y();
