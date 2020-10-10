@@ -1,0 +1,12 @@
+:host {
+	header {
+		display: flex;
+		flex-direction: row;
+
+		padding: 10px 50px;
+
+		#theme-toggler {
+			margin-left: auto;
+		}
+	}
+}

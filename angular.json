@@ -28,7 +28,7 @@
 							"src/assets"
 						],
 						"styles": [
-							"./src/app/core/theming/prebuilt/light.scss",
+							"./src/app/core/theming/prebuilt/theme.scss",
 							"src/styles.scss"
 						],
 						"scripts": []
@@ -93,7 +93,7 @@
 							"src/assets"
 						],
 						"styles": [
-							"./src/app/core/theming/prebuilt/light.scss",
+							"./src/app/core/theming/prebuilt/theme.scss",
 							"src/styles.scss"
 						],
 						"scripts": []

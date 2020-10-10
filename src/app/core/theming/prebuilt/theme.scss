@@ -1,0 +1,26 @@
+@import '../../color/all-color';
+// TODO: Density
+// @import '../../density/all-density';
+@import '../all-theme';
+@import '../../typography/all-typography';
+
+@include dia-core();
+
+// Light Theme
+$light-primary: dia-palette($dia-blue);
+$light-accent: dia-palette($dia-orange, A200, A100, A400);
+$light-warn: dia-palette($dia-red, 400);
+$light-success: dia-palette($dia-green, 400);
+
+$light-theme: dia-theme((color: (primary: $light-primary,
+			accent: $light-accent, warn: $light-warn, success: $light-success)), false);
+
+@include angular-dia-theme($light-theme);
+
+// Dark Theme
+$dark-theme: dia-theme((color: (primary: $light-primary,
+			accent: $light-accent, warn: $light-warn, success: $light-success)), true);
+
+.dia-dark-theme {
+	@include angular-dia-color($dark-theme);
+}

@@ -1,0 +1,15 @@
+@import '../theming/all-theme';
+
+@mixin angular-dia-color($config-or-theme) {
+	$config: if(_dia-is-theme-object($config-or-theme),
+			dia-get-color-config($config-or-theme), $config-or-theme);
+
+	@if $config==null {
+		@error 'No color configuration specified.';
+	}
+
+	@include angular-dia-theme((color: $config,
+			typography: null,
+			density: null,
+		));
+}
