@@ -31,6 +31,9 @@ const DEFAULT_ROUND_BUTTON_COLOR = 'accent';
 const BUTTON_HOST_ATTRIBUTES = [
 	'dia-button',
 	'dia-flat-button',
+	'dia-icon-right',
+	'dia-icon-left',
+	'dia-icon-lr',
 	'dia-icon-button',
 	'dia-raised-button',
 	'dia-stroked-button',
@@ -52,7 +55,10 @@ const _DiaButtonMixinBase: CanDisableRippleCtor &
 @Component({
 	selector: `button[dia-button], button[dia-raised-button], button[dia-icon-button],
              button[dia-fab], button[dia-mini-fab], button[dia-stroked-button],
-             button[dia-flat-button]`,
+			 button[dia-flat-button],
+			 button[dia-icon-right],
+			 button[dia-icon-left],
+			 button[dia-icon-lr]`,
 	exportAs: 'diaButton',
 	host: {
 		'[attr.disabled]': 'disabled || null',
@@ -137,7 +143,7 @@ export class DiaButton extends _DiaButtonMixinBase
 
 @Component({
 	selector: `a[dia-button], a[dia-raised-button], a[dia-icon-button], a[dia-fab],
-             a[dia-mini-fab], a[dia-stroked-button], a[dia-flat-button]`,
+             a[dia-mini-fab], a[dia-stroked-button], a[dia-flat-button],a[dia-icon-right],a[dia-icon-left],a[dia-icon-lr]`,
 	exportAs: 'diaButton, matAnchor',
 	host: {
 		'[attr.tabindex]': 'disabled ? -1 : (tabIndex || 0)',

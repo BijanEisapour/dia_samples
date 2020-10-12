@@ -1,0 +1,69 @@
+
+
+
+
+<dia-card class="playground">
+	<dia-card-header>
+		<dia-card-title>Playground</dia-card-title>
+  </dia-card-header>
+  <dia-card-content>
+    <form class="example-form">
+      <mat-form-field class="example-full-width">
+        <mat-label>Company (disabled)</mat-label>
+        <input starInput disabled value="Google">
+      </mat-form-field>
+
+      <table class="example-full-width" cellspacing="0"><tr>
+        <td><mat-form-field class="example-full-width">
+          <mat-label>First name</mat-label>
+          <input starInput>
+        </mat-form-field></td>
+        <td><mat-form-field class="example-full-width">
+          <mat-label>Long Last Name That Will Be Truncated</mat-label>
+          <input starInput>
+        </mat-form-field></td>
+      </tr></table>
+
+      <p>
+        <mat-form-field class="example-full-width">
+          <mat-label>Address</mat-label>
+          <textarea starInput placeholder="Ex. 100 Main St">1600 Amphitheatre Pkwy</textarea>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Address 2</mat-label>
+          <textarea starInput></textarea>
+        </mat-form-field>
+      </p>
+
+      <table class="example-full-width" cellspacing="0"><tr>
+        <td><mat-form-field class="example-full-width">
+          <mat-label>City</mat-label>
+          <input starInput placeholder="Ex. San Francisco">
+        </mat-form-field></td>
+        <td><mat-form-field class="example-full-width">
+          <mat-label>State</mat-label>
+          <input starInput placeholder="Ex. California">
+        </mat-form-field></td>
+        <td><mat-form-field class="example-full-width">
+          <mat-label>Postal Code</mat-label>
+          <input starInput #postalCode maxlength="5" placeholder="Ex. 94105" value="94043">
+          <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
+        </mat-form-field></td>
+      </tr></table>
+    </form>
+<br />
+
+<form class="example-form">
+  <mat-form-field class="example-full-width">
+    <mat-label>Telephone</mat-label>
+    <span matPrefix>+1 &nbsp;</span>
+    <input type="tel" starInput placeholder="555-555-1234">
+    <dia-icon matSuffix>mode_edit</dia-icon>
+  </mat-form-field>
+</form>
+
+
+  </dia-card-content>
+</dia-card>
+
+

@@ -7,22 +7,27 @@ import { AppComponent } from './app.component';
 
 import { DiaCardModule } from "./card/card-module";
 import { DiaButtonModule } from "./button/button-module";
+import { MatInputModule } from "./input/input-module";
 import { DiaIconModule } from "./icon/icon-module";
 import { DiaDividerModule } from "./divider/divider-module";
 
 import { ButtonComponent } from './pages/button/button.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { InputComponent } from './pages/input/input.component';
 
 @NgModule({
-	declarations: [AppComponent, ButtonComponent],
+	declarations: [AppComponent, ButtonComponent, InputComponent],
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
 		FormsModule,
 		ReactiveFormsModule,
 		DiaCardModule,
-		DiaButtonModule,
+    DiaButtonModule,
+    MatInputModule,
 		DiaIconModule,
-		DiaDividerModule
+		DiaDividerModule,
+		BrowserAnimationsModule
 	],
 	providers: [],
 	bootstrap: [AppComponent]

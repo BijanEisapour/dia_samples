@@ -1,0 +1,97 @@
+@import '../core/theming/palette';
+@import '../core/theming/theming';
+@import '../core/theming/check-duplicate-styles';
+@import '../core/style/form-common';
+@import '../core/typography/typography-utils';
+@import '../core/style/vendor-prefixes';
+
+
+@mixin star-input-color($config-or-theme) {
+  $config: star-get-color-config($config-or-theme);
+  $primary: map-get($config, primary);
+  $accent: map-get($config, accent);
+  $warn: map-get($config, warn);
+  $foreground: map-get($config, foreground);
+
+  .star-form-field-type-star-native-select .star-form-field-infix::after {
+    color: star-color($foreground, secondary-text);
+  }
+
+  .star-input-element:disabled,
+  .star-form-field-type-star-native-select.star-form-field-disabled .star-form-field-infix::after {
+    color: star-color($foreground, disabled-text);
+  }
+
+  .star-input-element {
+    caret-color: star-color($primary, text);
+
+    @include input-placeholder {
+      color: _star-control-placeholder-color($config);
+    }
+
+    // On dark themes we set the native `select` color to some shade of white,
+    // however the color propagates to all of the `option` elements, which are
+    // always on a white background inside the dropdown, causing them to blend in.
+    // Since we can't change background of the dropdown, we need to explicitly
+    // reset the color of the options to something dark.
+    @if (map-get($config, is-dark)) {
+      option {
+        color: $dark-primary-text;
+      }
+
+      option:disabled {
+        color: $dark-disabled-text;
+      }
+    }
+  }
+
+  .star-form-field.star-accent .star-input-element {
+    caret-color: star-color($accent, text);
+  }
+
+  .star-form-field.star-warn .star-input-element,
+  .star-form-field-invalid .star-input-element {
+    caret-color: star-color($warn, text);
+  }
+
+  .star-form-field-type-star-native-select.star-form-field-invalid .star-form-field-infix::after {
+    color: star-color($warn, text);
+  }
+}
+
+@mixin star-input-typography($config-or-theme) {
+  $config: star-get-typography-config($config-or-theme);
+  // The unit-less line-height from the font config.
+  $line-height: star-line-height($config, input);
+
+  // The amount of space between the top of the line and the top of the actual text
+  // (as a fraction of the font-size).
+  $line-spacing: ($line-height - 1) / 2;
+
+  // <input> elements seem to have their height set slightly too large on Safari causing the text to
+  // be misaligned w.r.t. the placeholder. Adding this margin corrects it.
+  input.star-input-element {
+    margin-top: -$line-spacing * 1em;
+  }
+}
+
+@mixin _star-input-density($config-or-theme) {}
+
+@mixin star-input-theme($theme-or-color-config) {
+  $theme: _star-legacy-get-theme($theme-or-color-config);
+  @include _star-check-duplicate-theme-styles($theme, 'star-input') {
+    $color: star-get-color-config($theme);
+    $density: star-get-density-config($theme);
+    $typography: star-get-typography-config($theme);
+
+    @if $color != null {
+      @include star-input-color($color);
+    }
+    @if $density != null {
+      @include _star-input-density($density);
+    }
+    @if $typography != null {
+      @include star-input-typography($typography);
+    }
+  }
+}
