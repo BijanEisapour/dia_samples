@@ -1,5 +1,7 @@
 @import './typography';
 @import '../../button/button-theme';
+@import '../../input/textInput';
+@import '../../input/inputGroup';
 @import '../../card/card-theme';
 @import '../../divider/divider-theme';
 @import '../../icon/icon-theme';
@@ -15,6 +17,8 @@
 
 	@include dia-base-typography($config);
 	@include dia-button-typography($config);
+	@include dia-text-input-typography($config);
+	@include dia-input-group-typography($config);
 	@include dia-card-typography($config);
 	@include dia-divider-typography($config);
 	@include dia-icon-typography($config);

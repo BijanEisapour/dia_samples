@@ -1,12 +1,16 @@
 // Import all the theming functionality.
 @import '../core';
 @import '../../button/button-theme';
+@import '../../input/textInput';
+@import '../../input/inputGroup';
 @import './check-duplicate-styles';
 
 // Create a theme.
 @mixin angular-dia-theme($theme-or-color-config) {
 	@include _dia-check-duplicate-theme-styles($theme-or-color-config, 'angular-dia-theme') {
 		@include dia-core-theme($theme-or-color-config);
+		@include dia-text-input-theme($theme-or-color-config);
+		@include dia-input-group-theme($theme-or-color-config);
 		@include dia-button-theme($theme-or-color-config);
 		@include dia-card-theme($theme-or-color-config);
 		@include dia-divider-theme($theme-or-color-config);

@@ -1,0 +1,61 @@
+.star-inputgroup-addon {
+  background: #252525;
+  color: #888888;
+  border-top: 1px solid #4b4b4b;
+  border-left: 1px solid #4b4b4b;
+  border-bottom: 1px solid #4b4b4b;
+  padding: 0.429rem 0.429rem;
+  min-width: 2.357rem;
+}
+.star-inputgroup-addon:last-child {
+  border-right: 1px solid #4b4b4b;
+}
+
+.star-inputgroup > .star-component,
+.star-inputgroup > .star-float-label > .star-component {
+  border-radius: 0;
+  margin: 0;
+}
+.star-inputgroup > .star-component + .star-inputgroup-addon,
+.star-inputgroup > .star-float-label > .star-component + .star-inputgroup-addon {
+  border-left: 0 none;
+}
+.star-inputgroup > .star-component:focus,
+.star-inputgroup > .star-float-label > .star-component:focus {
+  z-index: 1;
+}
+.star-inputgroup > .star-component:focus ~ label,
+.star-inputgroup > .star-float-label > .star-component:focus ~ label {
+  z-index: 1;
+}
+
+.star-inputgroup-addon:first-child,
+.star-inputgroup button:first-child,
+.star-inputgroup input:first-child {
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+.star-inputgroup .star-float-label:first-child input {
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+.star-inputgroup-addon:last-child,
+.star-inputgroup button:last-child,
+.star-inputgroup input:last-child {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.star-inputgroup .star-float-label:last-child input {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.star-fluid .star-inputgroup .star-button {
+  width: auto;
+}
+.star-fluid .star-inputgroup .star-button.star-button-icon-only {
+  width: 2.357rem;
+}

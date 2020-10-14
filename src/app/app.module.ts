@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 
 import { DiaCardModule } from "./card/card-module";
 import { DiaButtonModule } from "./button/button-module";
-import { MatInputModule } from "./input/input-module";
+import { InputTextModule } from "./input/textInput";
 import { DiaIconModule } from "./icon/icon-module";
 import { DiaDividerModule } from "./divider/divider-module";
 
@@ -24,7 +24,7 @@ import { InputComponent } from './pages/input/input.component';
 		ReactiveFormsModule,
 		DiaCardModule,
     DiaButtonModule,
-    MatInputModule,
+    InputTextModule,
 		DiaIconModule,
 		DiaDividerModule,
 		BrowserAnimationsModule
